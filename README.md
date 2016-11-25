@@ -2,7 +2,16 @@
 
 Benchmark different ways to construct a binary in Elixir
 
+## Usage
+
+Under the project directory, execute:
+```shell
+mix run run.ex
+```
+
 ## Result
+
+From my personal computer, the result is
 ```
 Name                                ips        average  deviation         median
 list_loop_test                 124.48 K        8.03 μs    ±36.75%        6.80 μs
@@ -16,3 +25,5 @@ binary_loop_test               111.24 K - 1.12x slower
 list_iter_test                 102.70 K - 1.21x slower
 binary_comprehension_test       98.39 K - 1.27x slower
 ```
+
+The best solution would be `list_loop_test`
