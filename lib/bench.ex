@@ -16,6 +16,10 @@ defmodule Bench do
     do_binary_loop(n, "")
   end
 
+  def list_comprehension_test(n) do
+    do_list_comprehension(n)
+  end
+
   defp do_binary_loop(0, acc), do: acc
   defp do_binary_loop(n, acc) do
     random = Enum.random(?a..?z)
@@ -30,6 +34,11 @@ defmodule Bench do
 
   def do_list_iter(n) when n > 0, do: Enum.map(1..n, fn _ -> Enum.random(?a..?z) end) |> IO. iodata_to_binary
   def do_list_iter(_), do: ""
+
+  def do_list_comprehension(n) when n > 0 do
+    (for _x <- 1..n, into: [], do: Enum.random(?a..?z)) |> IO.iodata_to_binary
+  end
+  def do_list_comprehension(_), do: ""
 
   def do_binary_comprehension(n) when n > 0 do
     for _x <- 1..n, into: <<>>, do: <<Enum.random(?a..?z)::8>>
