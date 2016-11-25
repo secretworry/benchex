@@ -13,34 +13,40 @@ mix run run.ex
 
 From my personal computer, the result is
 ```
-Elixir 1.3.0
+Erlang/OTP 18 [erts-7.3] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+Elixir 1.3.1
 Benchmark suite executing with the following configuration:
 warmup: 2.0s
 time: 5.0s
 parallel: 1
-Estimated total run time: 35.0s
+Estimated total run time: 42.0s
 
 Benchmarking binary_comprehension_test...
 Benchmarking binary_loop_test...
 Benchmarking list_comprehension_test...
 Benchmarking list_iter_test...
-Benchmarking list_loop_test...
+Benchmarking list_loop_with_iodata_to_binary_test...
+Warning: The function you are trying to benchmark is super fast, making measures more unreliable! See: https://github.com/PragTob/benchee/wiki/Benchee-Warnings#fast-execution-warning
+
+Benchmarking list_loop_with_list_to_binary_test...
 Warning: The function you are trying to benchmark is super fast, making measures more unreliable! See: https://github.com/PragTob/benchee/wiki/Benchee-Warnings#fast-execution-warning
 
 
-Name                                ips        average  deviation         median
-list_loop_test                 124.38 K        8.04 μs    ±28.69%        7.00 μs
-binary_loop_test               108.31 K        9.23 μs    ±80.18%        8.00 μs
-list_comprehension_test         97.55 K       10.25 μs   ±127.25%        9.00 μs
-list_iter_test                  94.39 K       10.59 μs   ±109.99%        9.00 μs
-binary_comprehension_test       77.62 K       12.88 μs    ±92.25%       10.00 μs
+Name                                           ips        average  deviation         median
+list_loop_with_list_to_binary_test        133.56 K        7.49 μs    ±26.22%        6.90 μs
+list_loop_with_iodata_to_binary_test      132.40 K        7.55 μs    ±38.54%        6.90 μs
+binary_loop_test                          110.02 K        9.09 μs   ±162.35%        8.00 μs
+list_comprehension_test                   106.60 K        9.38 μs    ±62.35%        9.00 μs
+list_iter_test                             99.28 K       10.07 μs   ±101.25%        9.00 μs
+binary_comprehension_test                  98.06 K       10.20 μs   ±179.18%        9.00 μs
 
 Comparison:
-list_loop_test                 124.38 K
-binary_loop_test               108.31 K - 1.15x slower
-list_comprehension_test         97.55 K - 1.28x slower
-list_iter_test                  94.39 K - 1.32x slower
-binary_comprehension_test       77.62 K - 1.60x slower
+list_loop_with_list_to_binary_test        133.56 K
+list_loop_with_iodata_to_binary_test      132.40 K - 1.01x slower
+binary_loop_test                          110.02 K - 1.21x slower
+list_comprehension_test                   106.60 K - 1.25x slower
+list_iter_test                             99.28 K - 1.35x slower
+binary_comprehension_test                  98.06 K - 1.36x slower
 ```
 
-The best solution would be `list_loop_test`
+The best solution would be `list_loop_with_list_to_binary_test`
